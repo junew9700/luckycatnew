@@ -1,0 +1,210 @@
+(() => {
+  const terms = {
+    "小幸運": ["小幸运", "Little Luck"],
+    "把每一點幸福都收好": ["把每一点幸福都收好", "Keep every little joy"],
+    "今天": ["今天", "Today"], "本週": ["本周", "This week"], "我的": ["我的", "Me"],
+    "更多": ["更多", "More"], "收起": ["收起", "Show less"],
+    "切換去月份": ["切换到月份", "Switch to month"], "切換回本週": ["切换回本周", "Back to this week"],
+    "本週幸運事件總結": ["本周幸运事件总结", "This Week's Lucky Moments"], "整理自本週記錄": ["整理自本周记录", "Based on this week's entries"], "本週還未留下記錄。": ["本周还未留下记录。", "No moments have been recorded this week yet."],
+    "查看小幸運": ["查看小幸运", "View Little Luck"],
+    "本月幸運事件總結": ["本月幸运事件总结", "This Month's Lucky Moments"], "整理自本月記錄": ["整理自本月记录", "Based on this month's entries"], "本月還未留下記錄。": ["本月还未留下记录。", "No moments have been recorded this month yet."],
+    "給今天的你": ["给今天的你", "A note for you"], "生活裡的小小美好，值得慢慢收藏。": ["生活里的小小美好，值得慢慢收藏。", "Little joys are worth keeping."],
+    "今天的你，已經做得很好了。": ["今天的你，已经做得很好了。", "You did a good job today!"],
+    "你已經順利走過今天，值得為自己驕傲。": ["你已经顺利走过今天，值得为自己骄傲。", "You made it through today. You should be proud of yourself."],
+    "今天的每一步，都值得肯定。": ["今天的每一步，都值得肯定。", "Every step you took today was worth celebrating."],
+    "你今天已盡力而為，這已經很了不起。": ["你今天已尽力而为，这已经很了不起。", "You did your best today, and that was something to be proud of."],
+    "又好好走過了一天，請給自己一個讚。": ["又好好走过了一天，请给自己一个赞。", "You made it through another day. Give yourself a pat on the back."],
+    "用1分鐘，記下今天的開心與感謝。": ["用1分钟，记下今天的开心与感谢。", "Take one minute to recall what things you are grateful for today."],
+    "寫下今天的幸運": ["写下今天的幸运", "Write Down Today's Lucky Things"], "查看明天的小幸運": ["查看明天的小幸运", "Tomorrow's Lucky Colour and Item"],
+    "繼續抽取小幸運": ["继续抽取小幸运", "Continue the draw"], "今天的記錄已完成，小幸運已經替你收好。": ["今天的记录已完成，小幸运已经替你收好。", "Today's entry is complete. Your little bit of luck is ready."],
+    "日記已完成，明天的小幸運等你來抽。": ["日记已完成，明天的小幸运等你来抽。", "Your journal is complete. Draw a little bit of luck for tomorrow."],
+    "給心情一點小提醒": ["给心情一点小提醒", "A little reminder"], "今日的一句話": ["今日的一句话", "Today's thought"],
+    "1分鐘感恩日記": ["1分钟感恩日记", "One-Minute Gratitude Journal"], "確認今天的記錄": ["确认今天的记录", "Review today's entry"],
+    "看看你今天寫下的小小幸福，確認後才會加入日記。": ["看看你今天写下的小小幸福，确认后才会加入日记。", "Review the little joys you've noted today. They'll be added to your journal once you confirm."],
+    "今天記下的事情": ["今天记下的事情", "Today's little joys"], "今天最想感謝的是誰？": ["今天最想感谢的是谁？", "Who did you feel most grateful to today?"],
+    "編輯": ["编辑", "Edit"], "返回修改": ["返回修改", "Back to edit"], "確認並儲存": ["确认并保存", "Confirm and save"],
+    "今日的記錄已完成！": ["今天的记录已完成！", "Today's entry is complete!"], "感謝你記下這些美好的瞬間。": ["感谢你记下这些美好的瞬间。", "There were many lucky things happened today! Tomorrow would a lucky day too:)"],
+    "抽取明天的小幸運": ["抽取明天的小幸运", "Return to Home Page"], "恭喜你！": ["恭喜你！", "Congratulations!"],
+    "今天的小幸運已經為你抽出。": ["今天的小幸运已经为你抽出。", "Your little bit of luck for tomorrow is ready."],
+    "明天的小幸運": ["明天的小幸运", "Tomorrow's Lucky Colour and Item"],
+    "看看這星期，哪些日子留下了小小的幸運。": ["看看这星期，哪些日子留下了小小的幸运。", "See which days held a little joy this week."],
+    "我的小幸運": ["我的小幸运", "My little joys"], "依照自己的步調，調整日常提醒。": ["按照自己的节奏，调整日常提醒。", "Adjust reminders to suit your routine."],
+    "每日提醒": ["每日提醒", "Daily reminder"], "在喜歡的時間，提醒自己留一點空間給今天。": ["在喜欢的时间，提醒自己留一点空间给今天。", "Choose a time to make a little room for today."],
+    "開啟每日提醒": ["开启每日提醒", "Turn on daily reminders"], "提醒時間": ["提醒时间", "Reminder time"],
+    "介面語言": ["界面语言", "Language"], "資料管理": ["数据管理", "Data management"],
+    "留意生活中，令人微笑的小細節。": ["留意生活中，令人微笑的小细节。", "Notice the little things that make you smile."], "你的日常也有小幸運 ✨": ["你的日常也有小幸运 ✨", "A little luck is part of your day ✨"],
+    "日記儲存在這部裝置。可匯出備份，或從有效備份恢復。": ["日记保存在这台设备。可导出备份，或从有效备份恢复。", "Your journal is stored on this device. You can export a backup or restore one."],
+    "匯出本機備份": ["导出本地备份", "Export a local backup"], "匯入備份": ["导入备份", "Import a backup"], "刪除所有本機資料": ["删除所有本地数据", "Delete all local data"],
+    "關於小幸運": ["关于小幸运", "About Little Luck"], "取消": ["取消", "Cancel"], "刪除": ["删除", "Delete"],
+    "一個離線、簡單、為日常留白的感恩日記。沒有登入，沒有壓力，只有你和每天的小小美好。": ["一个离线、简单、为日常留白的感恩日记。没有登录，没有压力，只有你和每天的小小美好。", "A simple, offline gratitude journal with room to breathe. No sign-in, no pressure—just you and the little joys in each day."],
+    "版本 1.1 · 生活的小美好，值得好好收藏。": ["版本 1.1 · 生活的小美好，值得好好收藏。", "Version 1.1 · Little joys are worth keeping."],
+    "順利完成事情": ["顺利完成事情", "Successfully completed something"], "遇到開心的事情": ["遇到开心的事情", "Something that made me happy"],
+    "收到小禮物": ["收到小礼物", "Received a little gift"], "被人關心": ["被人关心", "Someone showed me they cared"],
+    "看到漂亮的景色": ["看到漂亮的景色", "Saw a beautiful view"], "一個輕鬆愉快的瞬間": ["一个轻松愉快的瞬间", "Enjoyed a calm, happy moment"],
+    "吃到好吃的美食": ["吃到好吃的美食", "Ate something delicious"], "其他": ["其他", "Other"],
+    "自己": ["自己", "Myself"], "家人": ["家人", "Family"], "伴侶": ["伴侣", "Partner"], "朋友": ["朋友", "Friends"], "同事": ["同事", "Colleagues"],
+    "今天有甚麼讓你覺得不錯？": ["今天有什么让你觉得不错？", "What went well today?"],
+    "選一個最想記下的類型。": ["选一个最想记下的类型。", "Choose one moment to remember."],
+    "選擇類型後，會接着補充具體內容": ["选择类型后，会接着补充具体内容", "Choose a category, then add what happened."],
+    "寫下事情的具體內容。": ["写下事情的具体内容。", "Describe what happened."],
+    "選擇今天最想感謝的人。": ["选择今天最想感谢的人。", "Choose someone you felt grateful to today."],
+    "今天最想感謝的是甚麼？": ["今天最想感谢的是什么？", "What were you most grateful for today?"],
+    "今天最想感謝的是誰？": ["今天最想感谢的是谁？", "Who did you feel most grateful to today?"],
+    "至少記下一件具體事情": ["至少记下一件具体事情", "Write down at least one specific thing"],
+    "至少記下一項才可繼續": ["至少记下一项才可继续", "Add at least one item to continue"], "已記下 ": ["已记下 ", "Added "], " 項": [" 项", " item(s)"],
+    "再寫一件小幸運": ["再写一件小幸运", "Add another little joy"], "下一題": ["下一题", "Next question"],
+    "完成": ["完成", "Done"], "確認今天的記錄 ✨": ["确认今天的记录 ✨", "Review today's entry ✨"],
+    "已選擇：": ["已选择：", "Selected: "], "今天記下的小小幸福": ["今天记下的小小幸福", "Today's little joys"],
+    "本週，你留下了不少小幸運 🍀": ["本周，你留下了不少小幸运 🍀", "You collected lots of little joys this week 🍀"],
+    "這星期的小小幸運 🍀": ["这星期的小小幸运 🍀", "Little Luck in This Week 🍀"], "本週幸運事件總結": ["本周幸运事件总结", "This Week's Lucky Moments"],
+    "整理自你親手寫下的日記": ["整理自你亲手写下的日记", "From the moments you wrote down"], "這星期還未留下日記。": ["这星期还未留下日记。", "No entries were recorded this week."],
+    "由今天的一件小事開始吧。": ["从今天的一件小事开始吧。", "Start with one small thing today."],
+    "選擇介面語言": ["选择界面语言", "Choose app language"], "介面語言": ["界面语言", "Language"], "語言": ["语言", "Language"], "繁體中文": ["繁体中文", "Traditional Chinese"], "簡體中文": ["简体中文", "Simplified Chinese"],
+    "今天有甚麼讓你覺得不錯？": ["今天有什么让你觉得不错？", "What went well today?"],
+    "具體是甚麼事情？": ["具体是什么事情？", "What happened?"],
+    "具體是什麼事情呢？": ["具体是什么事情呢？", "What exactly happened?"],
+    "生活不會一直順利，但你可以選擇用怎樣的心面對。": ["生活不会一直顺利，但你可以选择用怎样的心面对。", "Life doesn't always go smoothly, but you can choose how you respond."],
+    "慢慢來，沿途的風景也值得欣賞。": ["慢慢来，沿途的风景也值得欣赏。", "Take your time; the view along the way matters too."],
+    "幸福不是一切都完美，而是懂得珍惜剛剛好的瞬間。": ["幸福不是一切都完美，而是懂得珍惜刚刚好的瞬间。", "Happiness isn't perfection; it's cherishing the moments you have."],
+    "不必急着發光，你本來就有自己的光。": ["不必急着发光，你本来就有自己的光。", "You don't have to shine on cue. Your light is already yours."],
+    "每一個今天，都是值得收藏的一頁。": ["每一个今天，都是值得收藏的一页。", "Every day is a page worth keeping."],
+    "有時候，最好的時光不在未來，而是你正在經歷的此刻。": ["有时候，最好的时光不在未来，而是你正在经历的此刻。", "Sometimes the best moment isn't ahead; it's the one you're living now."],
+    "幸運顏色": ["幸运颜色", "Lucky Colour"], "幸運物品": ["幸运物品", "Lucky Item"], "收下這份小幸運": ["收下这份小幸运", "Return to Home Page"], "返回首頁": ["返回首页", "Return to Home Page"],
+    "薄荷綠": ["薄荷绿", "Mint green"], "櫻花粉": ["樱花粉", "Cherry blossom pink"], "奶油黃": ["奶油黄", "Butter yellow"],
+    "天空藍": ["天空蓝", "Sky blue"], "薰衣草紫": ["薰衣草紫", "Lavender"], "蜜桃橘": ["蜜桃橙", "Peach"],
+    "香薰蠟燭": ["香薰蜡烛", "Scented candle"], "蝴蝶結": ["蝴蝶结", "Bow"], "小花": ["小花", "Little flower"],
+    "喜歡的杯子": ["喜欢的杯子", "Favourite mug"], "一首好聽的歌": ["一首好听的歌", "A lovely song"], "暖暖的茶": ["暖暖的茶", "A warm cup of tea"],
+    "柔軟的襪子": ["柔软的袜子", "Soft socks"], "隨身小書": ["随身小书", "A pocket-sized book"],
+    "寫下想感謝的人或事…": ["写下想感谢的人或事…", "Who or what are you grateful for?"], "寫下事情的具體內容…": ["写下事情的具体内容…", "Describe what happened…"],
+    "加入": ["加入", "Add"], "繼續填寫": ["继续填写", "Continue"], "新增記錄": ["新增记录", "Add entry"],
+    "先完成今天的兩題日記，就可以抽取小幸運。": ["先完成今天的两题日记，就可以抽取小幸运。", "Complete today's journal to reveal a little bit of luck."],
+    "完成今天的記錄後，就可以抽取明天的小幸運。": ["完成今天的记录后，就可以抽取明天的小幸运。", "Complete today's entry to reveal a little bit of luck for tomorrow."],
+    "回到首頁": ["返回首页", "Back to home"], "查看本週": ["查看本周", "View this week"], "開啟導覽": ["打开导航", "Open navigation"],
+    "至少記下一項才可繼續": ["至少记下一项才可继续", "Add at least one item to continue"], "至少記下一項": ["至少记下一项", "Add at least one item"],
+    "繼續抽取小幸運　→": ["继续抽取小幸运　→", "Continue the draw →"], "查看明天的小幸運　→": ["查看明天的小幸运　→", "Tomorrow's Lucky Colour and Item →"],
+    "寫下今天的幸運": ["写下今天的幸运", "Write Down Today's Lucky Things"], "再寫一件小幸運": ["再写一件小幸运", "Add another little joy"],
+    "下一題　→": ["下一题　→", "Next question →"], "確認今天的記錄 ✨": ["确认今天的记录 ✨", "Review today's entry ✨"],
+    "例如：今天收到朋友的暖心訊息…": ["例如：今天收到朋友的暖心消息…", "For example, a kind message from a friend…"],
+    "輸入具體事情，按 Enter 加入": ["输入具体事情，按 Enter 加入", "Enter a specific detail and press Enter to add it"],
+    "確定要刪除這項記錄嗎？": ["确定要删除这项记录吗？", "Delete this entry?"], "刪除後將無法在 App 內復原。": ["删除后将无法在 App 内恢复。", "You won't be able to restore this entry in the app."],
+    "至少記下一件具體事情": ["至少记下一件具体事情", "Write down at least one specific thing"], "新增記錄": ["新增记录", "Add an entry"],
+    "正在儲存…": ["正在保存…", "Saving…"], "已儲存提醒設定": ["已保存提醒设置", "Reminder settings saved"], "已關閉每日提醒": ["已关闭每日提醒", "Daily reminder turned off"],
+    "提醒時間": ["提醒时间", "Reminder time"], "備份已匯出": ["备份已导出", "Backup exported"], "備份已恢復": ["备份已恢复", "Backup restored"],
+    "匯入這份備份？": ["导入这份备份？", "Import this backup?"], "檔案格式無效，現有資料沒有改動": ["文件格式无效，现有数据没有更改", "Invalid file format. Your data was not changed."],
+    "刪除所有本機資料？": ["删除所有本地数据？", "Delete all local data?"], "所有日記、小幸運及設定都會清除，而且無法在 App 內復原。": ["所有日记、小幸运及设置都会清除，而且无法在 App 内恢复。", "All journal entries, lucky draws, and settings will be erased and cannot be restored in the app."],
+    "本機資料已清除": ["本地数据已清除", "Local data cleared"], "已儲存提醒時間": ["已保存提醒时间", "Reminder time saved"], "確定並儲存": ["确认并保存", "Confirm and save"],
+    "今天的記錄已完成！": ["今天的记录已完成！", "Today's entry is complete!"], "完成": ["完成", "Done"], "編輯這項記錄：": ["编辑这项记录：", "Edit this entry:"],
+    "加入記錄": ["加入记录", "Add entry"], "已選擇：": ["已选择：", "Selected: "],
+    "小貓正在替你抽出明天的小幸運……": ["小猫正在替你抽出明天的小幸运……", "Your lucky draw is on its way…"],
+    "小幸運為隨機抽取，純粹作為生活中的趣味及正向提醒，沒有科學根據。": ["小幸运为随机抽取，纯粹作为生活中的趣味及正向提醒，没有科学根据。", "The draw is random and meant for fun and encouragement."],
+    "用1分鐘，記下今天的開心與感謝。": ["用1分钟，记下今天的开心与感谢。", "Take one minute to recall what things you are grateful for today."],
+    "今天": ["今天", "Today"], "週一": ["周一", "Mon"], "週二": ["周二", "Tue"], "週三": ["周三", "Wed"], "週四": ["周四", "Thu"], "週五": ["周五", "Fri"], "週六": ["周六", "Sat"], "週日": ["周日", "Sun"]
+  };
+
+  const localeKey = "little-luck-language";
+  let locale = localStorage.getItem(localeKey) || "zh-Hant";
+  const originals = new WeakMap();
+  const originalAttrs = new WeakMap();
+  const langNames = { "zh-Hant": "繁體中文", "zh-Hans": "簡體中文", en: "English" };
+  const appTitles = { "zh-Hant": "小幸運｜把每一點幸福都收好", "zh-Hans": "小幸运｜把每一点幸福都收好", en: "Little Luck | Keep every little joy" };
+
+  function updateAppTitle() {
+    document.title = appTitles[locale];
+    const mobileTitle = document.querySelector('meta[name="apple-mobile-web-app-title"]');
+    if (mobileTitle) mobileTitle.content = locale === "en" ? "Little Luck" : locale === "zh-Hans" ? "小幸运" : "小幸運";
+  }
+
+  function translated(value) {
+    if (locale === "zh-Hant") return value;
+    let result = value;
+    for (const [source, pair] of Object.entries(terms).sort((a, b) => b[0].length - a[0].length)) {
+      if (result.includes(source)) result = result.split(source).join(pair[locale === "zh-Hans" ? 0 : 1]);
+    }
+    return result;
+  }
+
+  window.littleLuckTranslate = translated;
+
+  function excluded(node) {
+    const parent = node.parentElement;
+    return !parent || parent.closest("script,style,textarea,input,select,.record span,#reviewHappy,#reviewThanks,.event p");
+  }
+
+  function translateTree(root = document.body) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    for (const node of textNodes) {
+      if (excluded(node)) continue;
+      if (!originals.has(node)) originals.set(node, node.nodeValue);
+      let value = translated(originals.get(node));
+      if (node.parentElement.classList.contains("week-dayname")) {
+        const weekdays = locale === "en" ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] : ["一", "二", "三", "四", "五", "六", "日"];
+        const idx = ["一", "二", "三", "四", "五", "六", "日"].indexOf(originals.get(node).trim());
+        if (idx >= 0) value = weekdays[idx];
+      }
+      if (node.nodeValue !== value) node.nodeValue = value;
+    }
+    for (const el of root.querySelectorAll ? root.querySelectorAll("[placeholder],[aria-label],[title]") : []) {
+      let saved = originalAttrs.get(el);
+      if (!saved) { saved = {}; originalAttrs.set(el, saved); }
+      for (const attr of ["placeholder", "aria-label", "title"]) {
+        if (!el.hasAttribute(attr)) continue;
+        if (!(attr in saved)) saved[attr] = el.getAttribute(attr);
+        el.setAttribute(attr, translated(saved[attr]));
+      }
+    }
+  }
+
+  function updateDateLabel() {
+    const dateLocale = locale === "en" ? "en-GB" : locale === "zh-Hans" ? "zh-CN" : "zh-HK";
+    const dateLabel = document.querySelector("#todayLabel");
+    if (dateLabel) dateLabel.textContent = new Intl.DateTimeFormat(dateLocale, { weekday: "long", month: "long", day: "numeric" }).format(new Date());
+  }
+
+  function updateLanguageButtons() {
+    const switcher = document.querySelector("#languageSwitch");
+    if (!switcher) return;
+    switcher.querySelectorAll("[data-locale]").forEach(button => {
+      const active = button.dataset.locale === locale;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+  }
+
+  function updateSwitcherVisibility() {
+    const switcher = document.querySelector("#languageSwitch");
+    const home = document.querySelector("#home");
+    if (switcher) switcher.hidden = !home?.classList.contains("active");
+  }
+
+  function installPicker() {
+    const switcher = document.querySelector("#languageSwitch");
+    if (!switcher) return;
+    switcher.addEventListener("click", event => {
+      const button = event.target.closest("[data-locale]");
+      if (!button) return;
+      locale = button.dataset.locale;
+      localStorage.setItem(localeKey, locale);
+      document.documentElement.lang = locale === "en" ? "en-GB" : locale;
+      updateAppTitle();
+      updateDateLabel();
+      translateTree();
+      updateLanguageButtons();
+    });
+  }
+
+  installPicker();
+  document.documentElement.lang = locale === "en" ? "en-GB" : locale;
+  updateAppTitle();
+  updateDateLabel();
+  updateLanguageButtons();
+  updateSwitcherVisibility();
+  translateTree();
+  new MutationObserver(records => {
+    for (const record of records) {
+      if (record.type === "childList") translateTree(record.target.nodeType === Node.ELEMENT_NODE ? record.target : record.target.parentElement);
+    }
+    updateSwitcherVisibility();
+  }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["class"] });
+})();
